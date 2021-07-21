@@ -151,7 +151,7 @@ class Cell {
 
     //Road Calls
     setRoadCheck(_b) { this.roadCheck = _b; }
-    isRoad() { return (this.construction == "road"); }
+    isRoad() { return (this.construction.type == "road"); }
     setRoadID(_n) { this.roadID = _n; }
     connectedToRoad(reach) {
         for (var i = 0; i < this.neighbors.length; i++) {

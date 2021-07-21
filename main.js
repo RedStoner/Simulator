@@ -15,6 +15,7 @@ let selectedTool = "none";
 let wallet = new Wallet();
 let resourceGains;
 let gameTick = 0;
+let specialPlacement = ["mill", "mine", "farm"];
 
 //Sizing Options
 let gridSize = 60;
@@ -36,6 +37,7 @@ let startRoadX = Math.floor((gridSize / 3) / 2);
 
 
 function setup() {
+    console.log("Starting Up.");
     frameRate(30);
     CanvasSizeX = windowWidth - 20;
     CanvasSizeY = windowHeight - 20;
@@ -66,22 +68,26 @@ function setup() {
             }
         }
     }
+
     //Place starting road
+    console.log("Placing starting Roads");
     Grid[startRoadX][0].build("road",true);
     Grid[startRoadX][1].build("road",true);
     initiateRoads();
     //generate mines
+    console.log("Generating Mines");
     let objectsPlaced = 0;
     do {
-        let randX = Math.floor(Math.random() * (gridSize - 2)) + 1;
-        let randY = Math.floor(Math.random() * (gridSize - 2)) + 1;
+        let randX = Math.floor(random() * (gridSize - 2)) + 1;
+        let randY = Math.floor(random() * (gridSize - 2)) + 1;
         if (isValidChoice(randX,randY)) {
             Grid[randX][randY].setResource("mine");
             objectsPlaced += 1;
-            //console.log("Placing Mine");
+            console.log("Placing Mine");
         }
     } while (objectsPlaced <= totalMines);
     //generate farms
+    console.log("Generating Farms");
     objectsPlaced = 0;
     do {
         let randX = Math.floor(Math.random() * (gridSize - 2)) + 1;
@@ -89,10 +95,11 @@ function setup() {
         if (isValidChoice(randX, randY)) {
             Grid[randX][randY].setResource("farm");
             objectsPlaced += 1;
-            //console.log("Placing Farm");
+            console.log("Placing Farm");
         }
     } while (objectsPlaced <= totalFarms);
     //generate mills
+    console.log("Generating Mills");
     objectsPlaced = 0;
     do {
         let randX = Math.floor(Math.random() * (gridSize - 2)) + 1;
@@ -100,7 +107,7 @@ function setup() {
         if (isValidChoice(randX, randY)) {
             Grid[randX][randY].setResource("mill");
             objectsPlaced += 1;
-            //console.log("Placing LumberMill");
+            console.log("Placing LumberMill");
         }
     } while (objectsPlaced <= totalMills);
 }
@@ -251,7 +258,7 @@ function gameClick() {
     }
 }
 function isValidChoice(randX,randY) {
-    if (Grid[randX][randY].resource == "none" && Grid[randX][randY].construction == "none" && Grid[randX][randY].type != "border" && Grid[randX][randY].type != "water") {
+    if (Grid[randX][randY].resource == "none" && Grid[randX][randY].construction.type == "none" && Grid[randX][randY].type != "border" && Grid[randX][randY].type != "water") {
         return true;
     } else {
         return false;

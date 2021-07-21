@@ -1,5 +1,3 @@
-specialPlacement = ["mill", "mine", "farm"];
-
 class Building {
     constructor(type) {
         this.type = type;
@@ -23,7 +21,7 @@ class Building {
                 this.resourceCosts = "none";
                 this.buildCost = [
                     [
-                        ["money", 10],
+                        ["money", 10]
                     ]
                 ];
                 break;
@@ -43,14 +41,14 @@ class Building {
                 ];
                 this.buildCost = [
                     [
-                        ["money", 20],
+                        ["money", 20]
                     ],
                 ];
                 break;
             case "commercial":
                 this.resourceGains = [
                     [
-                        ["commercial", 1],
+                        ["commercial", 1]
                     ]
                 ];
                 this.resourceCosts = [
@@ -79,7 +77,7 @@ class Building {
                 ];
                 this.buildCost = [
                     [
-                        ["money", 30],
+                        ["money", 30]
                     ],
                 ];
                 break;
@@ -97,7 +95,7 @@ class Building {
                 ];
                 this.buildCost = [
                     [
-                        ["money", 100],
+                        ["money", 100]
                     ],
                 ];
                 break;
@@ -115,7 +113,7 @@ class Building {
                 ];
                 this.buildCost = [
                     [
-                        ["money", 100],
+                        ["money", 100]
                     ],
                 ];
                 break;
@@ -133,7 +131,7 @@ class Building {
                 ];
                 this.buildCost = [
                     [
-                        ["money", 100],
+                        ["money", 100]
                     ],
                 ];
                 break;
