@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Simulator", "Simulator\Simulator.njsproj", "{05B1E4E8-7789-4922-838E-25AC96993796}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E0DE6CB-34C1-4E17-95F5-A694E84361E5}"
+	ProjectSection(SolutionItems) = preProject
+		Simulator\cell.js = Simulator\cell.js
+		Simulator\index.html = Simulator\index.html
+		Simulator\main.js = Simulator\main.js
+		Simulator\p5.js = Simulator\p5.js
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05B1E4E8-7789-4922-838E-25AC96993796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05B1E4E8-7789-4922-838E-25AC96993796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05B1E4E8-7789-4922-838E-25AC96993796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05B1E4E8-7789-4922-838E-25AC96993796}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {969793D0-D516-44C4-B5B5-0D3FC1D4D63F}
+	EndGlobalSection
+EndGlobal

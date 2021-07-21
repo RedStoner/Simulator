@@ -1,0 +1,10 @@
+TODO
+
+zone map into segments (9)
+	- Will need to change resource gen to allow for at least one of each to spawn in each segment
+- Utility Layers
+	- power
+	- water
+	- sewage
+	- internet
+- 
