@@ -93,6 +93,7 @@ class Cell {
             fill(color('rgba(0,0,0,0)'));
             square(x + 2, y + 2, cellSize - 4);
         }
+        strokeWeight(1);
     }
 
     contains (x, y, _x, _y) {
