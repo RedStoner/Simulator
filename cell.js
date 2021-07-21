@@ -42,7 +42,7 @@ class Cell {
     draw(_x, _y) {
         let x = _x * cellSize;
         let y = _y * cellSize;
-        strokeWeight(4);
+        noStroke();
         //Shade roads grey
         switch (this.construction.type) {
             case "road":
@@ -72,7 +72,6 @@ class Cell {
             default:
                 this.grass(x, y);
         }
-        strokeWeight(1);
         //label resources
         if (this.resource == "mine") {
             fill(255);
@@ -84,14 +83,15 @@ class Cell {
             fill(0);
             text("L", x, y, cellSize, cellSize);
         }
+        strokeWeight(4);
         if (this.contains(mouseX, mouseY, _x, _y)) {
             stroke('red');
             fill(color('rgba(0,0,0,0)'));
-            square(x, y, cellSize)
+            square(x + 2, y + 2, cellSize - 4);
         } else if (this.clicked) {
             stroke(0);
             fill(color('rgba(0,0,0,0)'));
-            square(x, y, cellSize)
+            square(x + 2, y + 2, cellSize - 4);
         }
     }
 
@@ -171,7 +171,7 @@ class Cell {
     //Tile Draws
     road(x, y) {
         fill(color('#8a8a8a'));
-        stroke(color('#8a8a8a'));
+        //stroke(color('#8a8a8a'));
         square(x, y, cellSize);
         if (this.roadID != "0") {
             fill(color('#ff0000'));
@@ -180,52 +180,62 @@ class Cell {
     }
 
     grass(x, y) {
-        fill(this.color);
         noStroke();
+        fill(this.color);
         square(x, y, cellSize);
     }
 
     residential(x, y) {
-        stroke(color('#00ff00'))
+        strokeWeight(4);
+        stroke(color('#00ff00'));
         fill(color('rgba(0, 255, 0, 0.25)'));
-        square(x, y, cellSize)
+        square(x + 2, y + 2, cellSize - 4);
+        noStroke();
         if (!this.connectedToRoad(2)) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
     }
     commercial(x, y) {
-        stroke(color('#0000ff'))
+        strokeWeight(4);
+        stroke(color('#0000ff'));
         fill(color('rgba(0,0,255,0.25)'));
-        square(x, y, cellSize)
+        square(x + 2, y + 2, cellSize - 4);
+        noStroke();
         if (!this.connectedToRoad(1)) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
     }
     industrial(x, y) {
+        strokeWeight(4);
         stroke(color('#ffff00'))
         fill(color('rgba(255,255,0,0.25)'));
-        square(x, y, cellSize)
+        square(x + 2, y + 2, cellSize - 4);
+        noStroke();
         if (!this.connectedToRoad(3)) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
     }
     mine(x, y) {
+        strokeWeight(4);
         stroke(color('#b0b0b0'));
         fill(color('rgba(0,0,0,0)'));
-        square(x, y, cellSize)
+        square(x + 2, y + 2, cellSize - 4);
+        noStroke();
         if (!this.connectedToRoad(1)) {
             fill(color('#ff0000'));
-            text("!", x, y, cellSize-4, cellSize-4);
+            text("!", x, y, cellSize, cellSize);
         }
 
     }
     mill(x, y) {
-        stroke(color('#ffffff'))
+        strokeWeight(4);
+        stroke(color('#ffffff'));
         fill(color('rgba(0,0,0,0)'));
-        square(x, y, cellSize)
+        square(x + 2, y + 2, cellSize - 4);
+        noStroke();
         if (!this.connectedToRoad(1)) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
@@ -233,9 +243,11 @@ class Cell {
 
     }
     farm(x, y) {
-        stroke(color('#ffffff'))
+        stroke(color('#ffffff'));
+        strokeWeight(4);
         fill(color('rgba(0,0,0,0)'));
-        square(x, y, cellSize)
+        square(x + 2, y + 2, cellSize - 4);
+        noStroke();
         if (!this.connectedToRoad(1)) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
