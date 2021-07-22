@@ -5,11 +5,11 @@ class Cell {
         this.yIndex = y;
         this.type = type;
         this.construction = new Building(construction,level);
+        this.resource = resource;
 
 
         this.color;
         this.clicked = false;
-        this.resource = resource;
         this.roadCheck = false;
         this.roadID = "";
         this.neighbors = this.setNeighbors();
@@ -171,6 +171,10 @@ class Cell {
         if (this.yIndex - 1 >= 0) { _n.push([0, -1]); }
         if (this.yIndex + 1 < gridSize) { _n.push([0, 1]); }
         return _n;
+    }
+
+    exportData() {
+        return [this.xIndex, this.yIndex, this.type, this.unlocked, this.construction.type, this.construction.level, this.resource];
     }
 
     //Road Calls

@@ -1,10 +1,10 @@
 class Wallet {
-    constructor() {
-        this.money = [500,-1,0];
-        this.population = [0,0,0];
-        this.ore = [0,1000,0];
-        this.lumber = [0, 1000,0];
-        this.food = [500, 1000,0];
+    constructor(money, population, ore, lumber, food) {
+        this.money = money;
+        this.population = population;
+        this.ore = ore;
+        this.lumber = lumber;
+        this.food = food;
     }
     adjustMoney(_q, _set) {
         if (_set) {
@@ -131,5 +131,8 @@ class Wallet {
                 return;
         }
         
+    }
+    exportData() {
+        return [this.money, this.population, this.ore, this.lumber, this.food];
     }
 }

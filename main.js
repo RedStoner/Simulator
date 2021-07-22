@@ -183,7 +183,7 @@ function shrinkNumber(_n) {
 
 function newGame() {
     //Create the board
-    wallet = new Wallet()
+    wallet = new Wallet([500,-1,0],[0,0,0],[0,1000,0],[0, 1000,0],[500, 1000,0])
     for (var x = 0; x < gridSize; x++) {
         Grid[x] = [];
         for (var y = 0; y < gridSize; y++) {
