@@ -50,69 +50,11 @@ function setup() {
     zoom(0);
     textAlign(CENTER, CENTER);
     textSize(16);
-    for (var x = 0; x < gridSize; x++) {
-        Grid[x] = [];
-        for (var y = 0; y < gridSize; y++) {
-            if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1) {
-                Grid[x][y] = new Cell(x, y, "border", true);
-            } else {
-                let randTile = Math.random();
-                if (randTile > 0.97) {
-                    Grid[x][y] = new Cell(x, y, "grass5", true, "none", 0, "none");
-                } else if (randTile > 0.75) {
-                    Grid[x][y] = new Cell(x, y, "grass4", true, "none", 0, "none");
-                } else if (randTile > 0.5) {
-                    Grid[x][y] = new Cell(x, y, "grass1", true, "none", 0, "none");
-                } else if (randTile > 0.25) {
-                    Grid[x][y] = new Cell(x, y, "grass2", true, "none", 0, "none");
-                } else {
-                    Grid[x][y] = new Cell(x, y, "grass3", true, "none", 0, "none");
-                }
-            }
-        }
-    }
 
-    //Place starting road
-    console.log("Placing starting Roads");
-    Grid[startRoadX][0].build("road",0,true);
-    Grid[startRoadX][1].build("road",0,true);
-    initiateRoads();
-    //generate mines
-    console.log("Generating Mines");
-    let objectsPlaced = 0;
-    do {
-        let randX = Math.floor(random() * (gridSize - 2)) + 1;
-        let randY = Math.floor(random() * (gridSize - 2)) + 1;
-        if (isValidChoice(randX,randY)) {
-            Grid[randX][randY].setResource("mine");
-            objectsPlaced += 1;
-            console.log("Placing Mine");
-        }
-    } while (objectsPlaced <= totalMines);
-    //generate farms
-    console.log("Generating Farms");
-    objectsPlaced = 0;
-    do {
-        let randX = Math.floor(Math.random() * (gridSize - 2)) + 1;
-        let randY = Math.floor(Math.random() * (gridSize - 2)) + 1;
-        if (isValidChoice(randX, randY)) {
-            Grid[randX][randY].setResource("farm");
-            objectsPlaced += 1;
-            console.log("Placing Farm");
-        }
-    } while (objectsPlaced <= totalFarms);
-    //generate mills
-    console.log("Generating Mills");
-    objectsPlaced = 0;
-    do {
-        let randX = Math.floor(Math.random() * (gridSize - 2)) + 1;
-        let randY = Math.floor(Math.random() * (gridSize - 2)) + 1;
-        if (isValidChoice(randX, randY)) {
-            Grid[randX][randY].setResource("mill");
-            objectsPlaced += 1;
-            console.log("Placing LumberMill");
-        }
-    } while (objectsPlaced <= totalMills);
+
+    newGame();
+
+    
 }
 function draw() {
     //track game ticks
@@ -239,3 +181,68 @@ function shrinkNumber(_n) {
     }
 }
 
+function newGame() {
+    //Create the board
+    for (var x = 0; x < gridSize; x++) {
+        Grid[x] = [];
+        for (var y = 0; y < gridSize; y++) {
+            if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1) {
+                Grid[x][y] = new Cell(x, y, "border", true);
+            } else {
+                let randTile = Math.random();
+                if (randTile > 0.97) {
+                    Grid[x][y] = new Cell(x, y, "grass5", true, "none", 0, "none");
+                } else if (randTile > 0.75) {
+                    Grid[x][y] = new Cell(x, y, "grass4", true, "none", 0, "none");
+                } else if (randTile > 0.5) {
+                    Grid[x][y] = new Cell(x, y, "grass1", true, "none", 0, "none");
+                } else if (randTile > 0.25) {
+                    Grid[x][y] = new Cell(x, y, "grass2", true, "none", 0, "none");
+                } else {
+                    Grid[x][y] = new Cell(x, y, "grass3", true, "none", 0, "none");
+                }
+            }
+        }
+    }
+    //Place starting road
+    console.log("Placing starting Roads");
+    Grid[startRoadX][0].build("road", 0, true);
+    Grid[startRoadX][1].build("road", 0, true);
+    initiateRoads();
+    //generate mines
+    console.log("Generating Mines");
+    let objectsPlaced = 0;
+    do {
+        let randX = Math.floor(random() * (gridSize - 2)) + 1;
+        let randY = Math.floor(random() * (gridSize - 2)) + 1;
+        if (isValidChoice(randX, randY)) {
+            Grid[randX][randY].setResource("mine");
+            objectsPlaced += 1;
+            console.log("Placing Mine");
+        }
+    } while (objectsPlaced <= totalMines);
+    //generate farms
+    console.log("Generating Farms");
+    objectsPlaced = 0;
+    do {
+        let randX = Math.floor(Math.random() * (gridSize - 2)) + 1;
+        let randY = Math.floor(Math.random() * (gridSize - 2)) + 1;
+        if (isValidChoice(randX, randY)) {
+            Grid[randX][randY].setResource("farm");
+            objectsPlaced += 1;
+            console.log("Placing Farm");
+        }
+    } while (objectsPlaced <= totalFarms);
+    //generate mills
+    console.log("Generating Mills");
+    objectsPlaced = 0;
+    do {
+        let randX = Math.floor(Math.random() * (gridSize - 2)) + 1;
+        let randY = Math.floor(Math.random() * (gridSize - 2)) + 1;
+        if (isValidChoice(randX, randY)) {
+            Grid[randX][randY].setResource("mill");
+            objectsPlaced += 1;
+            console.log("Placing LumberMill");
+        }
+    } while (objectsPlaced <= totalMills);
+}
