@@ -22,19 +22,19 @@ class Menu {
         rect(x, y, menuWidth, (buttonHeight + 3) * topOffset);
         fill(0);
         textAlign(LEFT, CENTER);
-        let _t = " Money: " + shrinkNumber(wallet.money[0]);
+        let _t = " Money: " + shrinkNumber(wallet.money[2]) + "/s  " + shrinkNumber(wallet.money[0]);
         text(_t, x, y, menuWidth, (buttonHeight + 3));
         y += buttonHeight + 3;
-        _t = " Pop: " + shrinkNumber(wallet.population[0]) + " / " + shrinkNumber(wallet.population[1]);
+        _t = " Pop: " + shrinkNumber(wallet.population[2]) + "/s  " + shrinkNumber(wallet.population[0]) + " / " + shrinkNumber(wallet.population[1]);
         text(_t, x, y, menuWidth, (buttonHeight + 3));
         y += buttonHeight + 3;
-        _t = " Ore: " + shrinkNumber(wallet.ore[0]) + " / " + shrinkNumber(wallet.ore[1]);
+        _t = " Ore: " + shrinkNumber(wallet.ore[2]) + "/s  " + shrinkNumber(wallet.ore[0]) + " / " + shrinkNumber(wallet.ore[1]);
         text(_t, x, y, menuWidth, (buttonHeight + 3));
         y += buttonHeight + 3;
-        _t = " Lumber: " + shrinkNumber(wallet.lumber[0]) + " / " + shrinkNumber(wallet.lumber[1]);
+        _t = " Lumber: " + shrinkNumber(wallet.lumber[2]) + "/s  " + shrinkNumber(wallet.lumber[0]) + " / " + shrinkNumber(wallet.lumber[1]);
         text(_t, x, y, menuWidth, (buttonHeight + 3));
         y += buttonHeight + 3;
-        _t = " Food: " + shrinkNumber(wallet.food[0]) + " / " + shrinkNumber(wallet.food[1]);
+        _t = " Food: " + shrinkNumber(wallet.food[2]) + "/s  " + shrinkNumber(wallet.food[0]) + " / " + shrinkNumber(wallet.food[1]);
         text(_t, x, y, menuWidth, (buttonHeight + 3));
         textAlign(CENTER, CENTER);
     }

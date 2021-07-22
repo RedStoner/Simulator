@@ -148,18 +148,20 @@ function doPayouts() {
         for (var y = 0; y < gridSize; y++) {
             let cell = Grid[x][y];
             if (cell.construction.type != "none") {
-                //console.log("adding resources for: " + cell.construction.type);
-                let _con;
-                if (cell.construction.resourceGains != "none") {
-                    _con = cell.construction.resourceGains[cell.construction.level];
-                    for (var i = 0; i < _con.length; i++) {
-                        resourceGains[_con[i][0]] += _con[i][1];
+                if (cell.connectedToRoad()) {
+                    //console.log("adding resources for: " + cell.construction.type);
+                    let _con;
+                    if (cell.construction.resourceGains != "none") {
+                        _con = cell.construction.resourceGains[cell.construction.level];
+                        for (var i = 0; i < _con.length; i++) {
+                            resourceGains[_con[i][0]] += _con[i][1];
+                        }
                     }
-                }
-                if (cell.construction.resourceCosts != "none") {
-                    _con = cell.construction.resourceCosts[cell.construction.level];
-                    for (var i = 0; i < _con.length; i++) {
-                        resourceGains[_con[i][0]] -= _con[i][1];
+                    if (cell.construction.resourceCosts != "none") {
+                        _con = cell.construction.resourceCosts[cell.construction.level];
+                        for (var i = 0; i < _con.length; i++) {
+                            resourceGains[_con[i][0]] -= _con[i][1];
+                        }
                     }
                 }
             }
@@ -177,10 +179,12 @@ function doPayouts() {
         } else {
             //console.log("Adjusting: " + objectKey + " by " + value);
             wallet.adjust([objectKey, value], 1);
+            wallet.setRate([objectKey, value], 1);
         }
     });
     //if (wallet.population[0] >= 1) {
-        wallet.adjustMoney(wallet.population[0] * taxRate);
+    wallet.adjustMoney(wallet.population[0] * taxRate);
+    wallet.setRateMoney(wallet.population[0] * taxRate);
     //}
 
 

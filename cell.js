@@ -175,9 +175,9 @@ class Cell {
     setRoadCheck(_b) { this.roadCheck = _b; }
     isRoad() { return (this.construction.type == "road"); }
     setRoadID(_n) { this.roadID = _n; }
-    connectedToRoad(reach) {
+    connectedToRoad() {
         for (var i = 0; i < this.neighbors.length; i++) {
-            for (var r = 1; r <= reach; r++) {
+            for (var r = 1; r <= this.construction.roadRange; r++) {
                 if (this.xIndex + (this.neighbors[i][0] * r) >= 0 && this.xIndex + (this.neighbors[i][0] * r) < gridSize &&
                     this.yIndex + (this.neighbors[i][1] * r) >= 0 && this.yIndex + (this.neighbors[i][1] * r) < gridSize) {
                     let _nCell = Grid[this.xIndex + (this.neighbors[i][0] * r)][this.yIndex + (this.neighbors[i][1] * r)];
@@ -213,7 +213,7 @@ class Cell {
         fill(color('rgba(0, 255, 0, 0.25)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad(2)) {
+        if (!this.connectedToRoad()) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
@@ -224,7 +224,7 @@ class Cell {
         fill(color('rgba(0,0,255,0.25)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad(1)) {
+        if (!this.connectedToRoad()) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
@@ -235,7 +235,7 @@ class Cell {
         fill(color('rgba(255,255,0,0.25)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad(3)) {
+        if (!this.connectedToRoad()) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
@@ -246,7 +246,7 @@ class Cell {
         fill(color('rgba(0,0,0,0)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad(1)) {
+        if (!this.connectedToRoad()) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
@@ -258,7 +258,7 @@ class Cell {
         fill(color('rgba(0,0,0,0)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad(1)) {
+        if (!this.connectedToRoad()) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }
@@ -270,7 +270,7 @@ class Cell {
         fill(color('rgba(0,0,0,0)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad(1)) {
+        if (!this.connectedToRoad()) {
             fill(color('#ff0000'));
             text("!", x, y, cellSize, cellSize);
         }

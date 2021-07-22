@@ -3,10 +3,10 @@ class Building {
         this.type = type;
         this.level = level;
 
-
         this.resourceGains;
         this.resourceCosts;
         this.buildCost;
+        this.roadRange = 0;
 
         //Resource Layout - resourceGains[level][type(0),value(1)]...
 
@@ -26,6 +26,7 @@ class Building {
                 ];
                 break;
             case "residential":
+                this.roadRange = 1;
                 this.resourceGains = [
                     [
                         ["popCap", 5],
@@ -46,6 +47,7 @@ class Building {
                 ];
                 break;
             case "commercial":
+                this.roadRange = 2;
                 this.resourceGains = [
                     [
                         ["commercial", 1]
@@ -64,6 +66,7 @@ class Building {
                 ];
                 break;
             case "industrial":
+                this.roadRange = 3;
                 this.resourceGains = [
                     [
                         ["industrial", 1]
@@ -82,6 +85,7 @@ class Building {
                 ];
                 break;
             case "mine":
+                this.roadRange = 1;
                 this.resourceGains = [
                     [
                         ["ore", 25]
@@ -100,6 +104,7 @@ class Building {
                 ];
                 break;
             case "mill":
+                this.roadRange = 1;
                 this.resourceGains = [
                     [
                         ["lumber", 25]
@@ -118,6 +123,7 @@ class Building {
                 ];
                 break;
             case "farm":
+                this.roadRange = 1;
                 this.resourceGains = [
                     [
                         ["food", 2]
