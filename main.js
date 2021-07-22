@@ -118,6 +118,7 @@ function draw() {
     if (gameTick >= gameRate) {
         gameTick = 0;
         //calculate resource gains
+        wallet.adjustMoney(10);
         resourceGains = [];
         for (var x = 0; x < gridSize; x++) {
             for (var y = 0; y < gridSize; y++) {
