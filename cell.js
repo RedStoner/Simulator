@@ -1,13 +1,15 @@
 class Cell {
-    constructor(x, y, type, unlock) {
+    constructor(x, y, type, unlock,construction,level,resource) {
         this.unlocked = unlock;
         this.xIndex = x;
         this.yIndex = y;
         this.type = type;
+        this.construction = new Building(construction,level);
+
+
         this.color;
         this.clicked = false;
-        this.construction = new Building("none",0);
-        this.resource = "none";
+        this.resource = resource;
         this.roadCheck = false;
         this.roadID = "";
         this.neighbors = this.setNeighbors();
