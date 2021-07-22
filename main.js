@@ -52,8 +52,12 @@ function setup() {
     textAlign(CENTER, CENTER);
     textSize(16);
 
-
-    newGame();
+    if (hasSaveData()) {
+        loadGame();
+    } else {
+        newGame();
+    }
+    initiateRoads();
 
     
 }
@@ -212,7 +216,6 @@ function newGame() {
     console.log("Placing starting Roads");
     Grid[startRoadX][0].build("road", 0, true);
     Grid[startRoadX][1].build("road", 0, true);
-    initiateRoads();
     //generate mines
     console.log("Generating Mines");
     let objectsPlaced = 0;
@@ -264,5 +267,21 @@ function saveGame() {
     saveData[2] = wallet.exportData();
     console.log(saveData);
     localStorage.setItem('saveData',JSON.stringify(saveData));
+}
+function hasSaveData() { return (localStorage.getItem('saveData') !==null)}
+function loadGame() {
+    let saveData = JSON.parse(localStorage.getItem('saveData'));
+    gameTick = saveData[0][0];
+    gridSize = saveData[0][1];
+    startRoadX = saveData[0][2];
+    for (var x = 0; x < gridSize; x++) {
+        Grid[x] = [];
+        for (var y = 0; y < gridSize; y++) {
+            let _c = saveData[1][x][y];
+            Grid[x][y] = new Cell(_c[0], _c[1], _c[2], _c[3], _c[4], _c[5], _c[6]);
+        }
+    }
+    _c = saveData[2]
+    wallet = new Wallet(_c[0], _c[1], _c[2], _c[3], _c[4]);
 }
 

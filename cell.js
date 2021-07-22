@@ -37,6 +37,9 @@ class Cell {
                 this.color = color('#000000');
         }
     }
+    exportData() {
+        return [this.xIndex, this.yIndex, this.type, this.unlocked, this.construction.type, this.construction.level, this.resource];
+    }
     getInfo() {
         return this.xIndex, this.yIndex, this.type;
     }
@@ -173,9 +176,6 @@ class Cell {
         return _n;
     }
 
-    exportData() {
-        return [this.xIndex, this.yIndex, this.type, this.unlocked, this.construction.type, this.construction.level, this.resource];
-    }
 
     //Road Calls
     setRoadCheck(_b) { this.roadCheck = _b; }

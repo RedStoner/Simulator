@@ -6,6 +6,9 @@ class Wallet {
         this.lumber = lumber;
         this.food = food;
     }
+    exportData() {
+        return [this.money, this.population, this.ore, this.lumber, this.food];
+    }
     adjustMoney(_q, _set) {
         if (_set) {
             this.money[0] = _q;
@@ -131,8 +134,5 @@ class Wallet {
                 return;
         }
         
-    }
-    exportData() {
-        return [this.money, this.population, this.ore, this.lumber, this.food];
     }
 }
