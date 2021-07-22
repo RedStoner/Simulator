@@ -9,7 +9,10 @@ class Wallet {
     adjustMoney(_q, _set) {
         if (_set) {
             this.money[0] = _q;
-        } else if (this.money[0] + _q < 0) {
+            return true;
+        }
+        if (this.money[0] + _q < 0) {
+            this.money[0] = 0;
             return false;
         } else {
             this.money[0] += _q;
@@ -17,36 +20,54 @@ class Wallet {
         }
     }
     adjustPopulation(_q, _set) {
+        //force set value with no checks.
         if (_set) {
             this.population[0] = _q;
-        } else if (this.population[0] + _q >= 0) {
-            this.population[0] += _q;
+            return;
         }
+        //check value and correct it for min/max storage
+        this.population[0] += this.checkVal(_q, this.population[0], this.population[1]);
     }
     adjustOre(_q, _set) {
         if (_set) {
             this.ore[0] = _q;
-        } else if (this.ore[0] + _q >= 0) {
-            this.ore[0] += _q;
+            return;
         }
+        this.ore[0] += this.checkVal(_q, this.ore[0], this.ore[1]);
     }
     adjustLumber(_q, _set) {
         if (_set) {
             this.lumber[0] = _q;
-        } else if (this.lumber[0] + _q >= 0) {
-            this.lumber[0] += _q;
+            return;
         }
+        this.lumber[0] += this.checkVal(_q, this.lumber[0], this.lumber[1]);
     }
     adjustFood(_q, _set) {
         if (_set) {
             this.food[0] = _q;
-        } else if (this.food[0] + _q < 0) {
-            return false;
-        } else {
-            this.food[0] += _q;
-            return true;
+            return;
         }
+        this.food[0] += this.checkVal(_q, this.food[0], this.food[1]);
     }
+
+    checkVal(_v, _c, _m) {
+        //_v value to check _c current _m max
+
+        //prevent negative
+        if (_c + _v < 0) {
+            return 0 - _c;
+        }
+        //prevent overflow
+        if (_c + _v > _m) {
+            if (_m - _c >= 0) {
+                return _m - _c;
+            } else {
+                return 0;
+            }
+        }
+        return _v
+    }
+
     setCapMoney(_v) {this.money[1] = _v;}
     setCapPopulation(_v) {this.population[1] = _v;}
     setCapOre(_v) {this.ore[1] = _v;}
