@@ -28,6 +28,7 @@ let zoomLevels = [8,16,32,64]
 let zoomLevel = 2;
 let gameRate = 30;
 let taxRate = 0.07;
+let saveRate = 30;
 
 //Generation Options
 let totalMines = 6;
@@ -60,9 +61,11 @@ function draw() {
     //track game ticks
     gameTick++;
     //do game caculations on timed based cycle
-    if (gameTick >= gameRate) {
-        gameTick = 0;
+    if (gameTick % gameRate == 0) {
         doPayouts();
+        if (gameTick % (gameRate * saveRate) == 0) {
+            saveGame();
+        }
     }
     clear()
     textSize(zoomLevels[zoomLevel]/2);
@@ -188,7 +191,7 @@ function newGame() {
         Grid[x] = [];
         for (var y = 0; y < gridSize; y++) {
             if (x == 0 || x == gridSize - 1 || y == 0 || y == gridSize - 1) {
-                Grid[x][y] = new Cell(x, y, "border", true);
+                Grid[x][y] = new Cell(x, y, "border", true, "none", 0, "none");
             } else {
                 let randTile = Math.random();
                 if (randTile > 0.97) {
@@ -247,3 +250,19 @@ function newGame() {
         }
     } while (objectsPlaced <= totalMills);
 }
+function saveGame() {
+    let saveData = [];
+    let saveGrid = [];
+    for (var x = 0; x < gridSize; x++) {
+        saveGrid[x] = [];
+        for (var y = 0; y < gridSize; y++) {
+            saveGrid[x][y] = Grid[x][y].exportData();
+        }
+    }
+    saveData[0] = [gameTick, gridSize, startRoadX];
+    saveData[1] = saveGrid;
+    saveData[2] = wallet.exportData();
+    console.log(saveData);
+    localStorage.setItem('saveData',JSON.stringify(saveData));
+}
+
