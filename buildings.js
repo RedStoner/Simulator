@@ -29,7 +29,7 @@ class Building {
                 this.resourceGains = [
                     [
                         ["popCap", 5],
-                        ["pop", 0.01],
+                        ["population", 0.01],
                         ["residential", 1.5]
                     ]
                 ];

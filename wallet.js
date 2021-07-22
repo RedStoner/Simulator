@@ -1,10 +1,10 @@
 class Wallet {
     constructor() {
-        this.money = [100,-1];
-        this.population = [0,100];
+        this.money = [500,-1];
+        this.population = [0,0];
         this.ore = [0,1000];
         this.lumber = [0, 1000];
-        this.food = [0, 1000];
+        this.food = [500, 1000];
     }
     adjustMoney(_q, _set) {
         if (_set) {
@@ -66,18 +66,23 @@ class Wallet {
                 return (this.food[0] >= _c[1]);
         }
     }
-    adjust(_c,_m) {
+    adjust(_c, _m) {
         switch (_c[0]) {
             case "money":
                 this.adjustMoney(_c[1] * _m);
+                return;
             case "population":
                 this.adjustPopulation(_c[1] * _m);
+                return;
             case "ore":
                 this.adjustOre(_c[1] * _m);
+                return;
             case "lumber":
                 this.adjustLumber(_c[1] * _m);
+                return;
             case "food":
                 this.adjustFood(_c[1] * _m);
+                return;
         }
     }
 }

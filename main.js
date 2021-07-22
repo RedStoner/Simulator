@@ -16,6 +16,8 @@ let wallet = new Wallet();
 let resourceGains;
 let gameTick = 0;
 let specialPlacement = ["mill", "mine", "farm"];
+let demandNames = ["residential", "commercial", "industrial"];
+let demands = { residential: 0, commercial: 0, industrial: 0 };
 
 //Sizing Options
 let gridSize = 60;
@@ -25,6 +27,7 @@ let zoomLevels = [8,16,32,64]
 //general Options
 let zoomLevel = 2;
 let gameRate = 30;
+let taxRate = 0.07;
 
 //Generation Options
 let totalMines = 6;
@@ -117,14 +120,7 @@ function draw() {
     //do game caculations on timed based cycle
     if (gameTick >= gameRate) {
         gameTick = 0;
-        //calculate resource gains
-        wallet.adjustMoney(10);
-        resourceGains = [];
-        for (var x = 0; x < gridSize; x++) {
-            for (var y = 0; y < gridSize; y++) {
-
-            }
-        }
+        doPayouts();
     }
     clear()
     textSize(zoomLevels[zoomLevel]/2);
@@ -143,6 +139,52 @@ function draw() {
 
 
     
+}
+function doPayouts() {
+    //calculate resource gains
+    //wallet.adjustMoney(10);
+    resourceGains = { money: 0, population: 0, ore: 0, lumber: 0, food: 0, residential: 0, commercial:  0, industrial: 0, popCap: 0 };
+    for (var x = 0; x < gridSize; x++) {
+        for (var y = 0; y < gridSize; y++) {
+            let cell = Grid[x][y];
+            if (cell.construction.type != "none") {
+                //console.log("adding resources for: " + cell.construction.type);
+                let _con;
+                if (cell.construction.resourceGains != "none") {
+                    _con = cell.construction.resourceGains[cell.construction.level];
+                    for (var i = 0; i < _con.length; i++) {
+                        resourceGains[_con[i][0]] += _con[i][1];
+                    }
+                }
+                if (cell.construction.resourceCosts != "none") {
+                    _con = cell.construction.resourceCosts[cell.construction.level];
+                    for (var i = 0; i < _con.length; i++) {
+                        resourceGains[_con[i][0]] -= _con[i][1];
+                    }
+                }
+            }
+        }
+    }
+    //console.log(resourceGains);
+    Object.keys(resourceGains).map(function (objectKey, index) {
+        var value = resourceGains[objectKey];
+        if (objectKey == "popCap") {
+            //console.log("Adjusting Cap: " + objectKey + " by " + value);
+            wallet.setCapPopulation(value);
+        } else if (demandNames.includes(value)) {
+            //console.log("Adjusting Demand: " + objectKey + " by " + value);
+            demands[objectKey] = value;
+        } else {
+            //console.log("Adjusting: " + objectKey + " by " + value);
+            wallet.adjust([objectKey, value], 1);
+        }
+    });
+    //if (wallet.population[0] >= 1) {
+        wallet.adjustMoney(wallet.population[0] * taxRate);
+    //}
+
+
+
 }
 function keyTyped() {
     switch (key) {
@@ -297,7 +339,7 @@ function shrinkNumber(_n) {
         //Thousand
         return (_n / 1e3).toFixed(3) + " k";
     } else {
-        return _n;
+        return _n.toFixed(3);
     }
 }
 
