@@ -6,7 +6,7 @@ class Cell {
         this.type = type;
         this.color;
         this.clicked = false;
-        this.construction = new Building("none");
+        this.construction = new Building("none",0);
         this.resource = "none";
         this.roadCheck = false;
         this.roadID = "";
@@ -106,23 +106,42 @@ class Cell {
         this.clicked = _s;
     }
 
-    build(_c,forcedBuild) {
+    build(_c, _l, forcedBuild) {
         if (forcedBuild) {
-            this.construction = new Building(_c);
+            this.construction = new Building(_c, _l);
             return true;
+        }
+        //check if they have the resources to build
+        let _newCon = new Building(_c, _l);
+        for (var i = 0; i < _newCon.buildCost[_l].length; i++) {
+            console.log(_newCon.buildCost[_l][i]);
+            if (!wallet.hasEnough(_newCon.buildCost[_l][i])) {
+                console.log("Not enough resources to build");
+                return false;
+            }
         }
         if (this.construction.type == "none" && this.resource == "none" && this.type != "border") {
             if (!specialPlacement.includes(_c)) {
-                this.construction = new Building(_c);
+                this.construction = new Building(_c,_l);
                 if (_c == "road") {
                     resetRoadChecks();
                     RoadNetworks[0].updateNetwork();
                 }
+                //charge the resources
+                for (var i = 0; i < _newCon.buildCost[_l].length; i++) {
+                    wallet.adjust(_newCon.buildCost[_l][i], -1);
+                }
+
                 return true;
             }
         } else if (this.construction.type == "none" && this.resource != "none") {
             if (_c == this.resource) {
-                this.construction = new Building(_c);
+                this.construction = new Building(_c, _l);
+                //charge the resources
+                for (var i = 0; i < _newCon.buildCost[_l].length; i++) {
+                    wallet.adjust(_newCon.buildCost[_l][i], -1);
+                }
+
                 return true;
             }
         }
@@ -131,10 +150,12 @@ class Cell {
     demo() {
         // check if this is the staring road
         if (!(this.xIndex == startRoadX && this.yIndex == 1) && this.type != "border") {
-            this.construction = new Building("none");
             if (this.construction.type == "road") {
+                this.construction = new Building("none", 0);
                 resetRoadChecks();
                 RoadNetworks[0].updateNetwork();
+            } else {
+                this.construction = new Building("none", 0);
             }
         }
     }

@@ -8,7 +8,7 @@ class Menu {
             new Button(3, "Commercial", "commercial"),
             new Button(4, "Industrial", "industrial"),
             new Button(5, "Mine", "mine"),
-            new Button(6, "Lumber Mill", "lumber"),
+            new Button(6, "Lumber Mill", "mill"),
             new Button(7, "Farm", "farm"),
         ];
     }

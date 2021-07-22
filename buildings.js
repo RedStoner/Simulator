@@ -1,7 +1,7 @@
 class Building {
-    constructor(type) {
+    constructor(type,level) {
         this.type = type;
-        this.level = 1;
+        this.level = level;
 
 
         this.resourceGains;

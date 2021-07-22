@@ -71,8 +71,8 @@ function setup() {
 
     //Place starting road
     console.log("Placing starting Roads");
-    Grid[startRoadX][0].build("road",true);
-    Grid[startRoadX][1].build("road",true);
+    Grid[startRoadX][0].build("road",0,true);
+    Grid[startRoadX][1].build("road",0,true);
     initiateRoads();
     //generate mines
     console.log("Generating Mines");
@@ -227,7 +227,7 @@ function gameClick() {
                                     cell.demo();
                                     break;
                                 default:
-                                    cell.build(selectedTool);
+                                    cell.build(selectedTool,0);
                                     break;
 
                             }
