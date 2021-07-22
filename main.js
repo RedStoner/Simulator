@@ -12,7 +12,7 @@ let currentY = 0;
 let selectedX = 0;
 let selectedY = 0;
 let selectedTool = "none";
-let wallet = new Wallet();
+let wallet;
 let resourceGains;
 let gameTick = 0;
 let specialPlacement = ["mill", "mine", "farm"];
@@ -183,6 +183,7 @@ function shrinkNumber(_n) {
 
 function newGame() {
     //Create the board
+    wallet = new Wallet()
     for (var x = 0; x < gridSize; x++) {
         Grid[x] = [];
         for (var y = 0; y < gridSize; y++) {
