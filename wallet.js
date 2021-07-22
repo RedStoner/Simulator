@@ -33,8 +33,8 @@ class Wallet {
     adjustLumber(_q, _set) {
         if (_set) {
             this.lumber[0] = _q;
-        } else if (this.lumber + _q >= 0) {
-            this.lumber += _q;
+        } else if (this.lumber[0] + _q >= 0) {
+            this.lumber[0] += _q;
         }
     }
     adjustFood(_q, _set) {
