@@ -1,0 +1,29 @@
+﻿body
+{
+}
+.buttons button{
+    background-color: lightslategray;
+    border: none;
+    color: black;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 4px 4px 4px 4px;
+    width: 30%;
+}
+#board{
+    width: 75%;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+
+}
+#menu{
+    width: 24%;
+    float: right;
+    padding: 0px;
+    margin: 0px;
+}
