@@ -1,27 +1,27 @@
-function keyTyped() {
-    switch (key) {
-        case 'a':
-            moveLeft();
-            break;
-        case 'd':
-            moveRight();
-            break;
-        case 'w':
-            moveUp();
-            break;
-        case 's':
-            moveDown();
-            break;
-        case 'q':
-            zoom(-1);
-            break;
-        case 'e':
-            zoom(1);
-            break;
-    }
-    return false
+////function keyTyped() {
+////    switch (key) {
+////        case 'a':
+////            moveLeft();
+////            break;
+////        case 'd':
+////            moveRight();
+////            break;
+////        case 'w':
+////            moveUp();
+////            break;
+////        case 's':
+////            moveDown();
+////            break;
+////        case 'q':
+////            zoom(-1);
+////            break;
+////        case 'e':
+////            zoom(1);
+////            break;
+////    }
+////    return false
 
-}
+////}
 function moveLeft() {
     console.log("moving left");
     if (currentX - 1 >= 0) {
@@ -55,6 +55,31 @@ function zoom(_l) {
     adjustMaxGrids();
     cellSize = zoomLevels[zoomLevel];
     //check if current pos is oob
+}
+function checkMovement(){
+    if (keyIsPressed === true) {
+        switch (key) {
+            case 'a':
+                moveLeft();
+                break;
+            case 'd':
+                moveRight();
+                break;
+            case 'w':
+                moveUp();
+                break;
+            case 's':
+                moveDown();
+                break;
+            case 'q':
+                zoom(-1);
+                break;
+            case 'e':
+                zoom(1);
+                break;
+        }
+
+    }
 }
 function gameClick() {
     if (mouseButton === LEFT) {
