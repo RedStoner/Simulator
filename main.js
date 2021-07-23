@@ -74,6 +74,7 @@ function draw() {
         }
     }
     checkMovement();
+    checkClick();
     clear()
     textSize(zoomLevels[zoomLevel]/2);
     for (var x = 0; x < maxGridX; x++) {
