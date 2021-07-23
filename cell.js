@@ -119,9 +119,7 @@ class Cell {
         //check if they have the resources to build
         let _newCon = new Building(_c, _l);
         for (var i = 0; i < _newCon.buildCost[_l].length; i++) {
-            console.log(_newCon.buildCost[_l][i]);
             if (!wallet.hasEnough(_newCon.buildCost[_l][i])) {
-                console.log("Not enough resources to build");
                 return false;
             }
         }

@@ -249,7 +249,6 @@ function newGame() {
         if (isValidChoice(randX, randY)) {
             Grid[randX][randY].setResource("mine");
             objectsPlaced += 1;
-            console.log("Placing Mine");
         }
     } while (objectsPlaced <= totalMines);
     //generate farms
@@ -261,7 +260,6 @@ function newGame() {
         if (isValidChoice(randX, randY)) {
             Grid[randX][randY].setResource("farm");
             objectsPlaced += 1;
-            console.log("Placing Farm");
         }
     } while (objectsPlaced <= totalFarms);
     //generate mills
@@ -273,7 +271,6 @@ function newGame() {
         if (isValidChoice(randX, randY)) {
             Grid[randX][randY].setResource("mill");
             objectsPlaced += 1;
-            console.log("Placing LumberMill");
         }
     } while (objectsPlaced <= totalMills);
 }
@@ -289,7 +286,6 @@ function saveGame() {
     saveData[0] = [gameTick, gridSize, startRoadX];
     saveData[1] = saveGrid;
     saveData[2] = wallet.exportData();
-    console.log(saveData);
     localStorage.setItem('saveData',JSON.stringify(saveData));
 }
 function hasSaveData() { return (localStorage.getItem('saveData') !==null)}
