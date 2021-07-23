@@ -77,7 +77,11 @@ class Cell {
             default:
                 this.grass(x, y);
         }
+        if (this.construction.type != "none" && this.construction.type != 'road') {
+            this.checkRoadConnection(x, y);
+        }
         //label resources
+        textSize(Math.ceil(zoomLevels[zoomLevel] / 3));
         if (this.resource == "mine") {
             fill(255);
             text("M", x, y, cellSize, cellSize);
@@ -88,6 +92,7 @@ class Cell {
             fill(0);
             text("L", x, y, cellSize, cellSize);
         }
+        textSize(16);
         strokeWeight(4);
         if (this.contains(mouseX, mouseY, _x, _y)) {
             stroke('red');
@@ -201,7 +206,7 @@ class Cell {
         square(x, y, cellSize);
         if (this.roadID != "0") {
             fill(color('#ff0000'));
-            text("!", x, y, cellSize, cellSize);
+            square(x, y, cellSize / 4, cellSize / 4);
         }
     }
 
@@ -217,10 +222,6 @@ class Cell {
         fill(color('rgba(0, 255, 0, 0.25)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad()) {
-            fill(color('#ff0000'));
-            text("!", x, y, cellSize, cellSize);
-        }
     }
     commercial(x, y) {
         strokeWeight(4);
@@ -228,10 +229,6 @@ class Cell {
         fill(color('rgba(0,0,255,0.25)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad()) {
-            fill(color('#ff0000'));
-            text("!", x, y, cellSize, cellSize);
-        }
     }
     industrial(x, y) {
         strokeWeight(4);
@@ -239,10 +236,6 @@ class Cell {
         fill(color('rgba(255,255,0,0.25)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad()) {
-            fill(color('#ff0000'));
-            text("!", x, y, cellSize, cellSize);
-        }
     }
     mine(x, y) {
         strokeWeight(4);
@@ -250,10 +243,6 @@ class Cell {
         fill(color('rgba(0,0,0,0)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad()) {
-            fill(color('#ff0000'));
-            text("!", x, y, cellSize, cellSize);
-        }
 
     }
     mill(x, y) {
@@ -262,10 +251,6 @@ class Cell {
         fill(color('rgba(0,0,0,0)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
-        if (!this.connectedToRoad()) {
-            fill(color('#ff0000'));
-            text("!", x, y, cellSize, cellSize);
-        }
 
     }
     farm(x, y) {
@@ -274,11 +259,13 @@ class Cell {
         fill(color('rgba(0,0,0,0)'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
+
+    }
+    checkRoadConnection(x,y) {
         if (!this.connectedToRoad()) {
             fill(color('#ff0000'));
-            text("!", x, y, cellSize, cellSize);
+            square(x, y, cellSize/4, cellSize/4);
         }
-
     }
 
 }

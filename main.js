@@ -43,6 +43,7 @@ let menu = new Menu("construction");
 
 
 function setup() {
+    triangleNumbers(50);
     console.log("Starting Up.");
     frameRate(30);
     CanvasSizeX = document.getElementById("board").offsetWidth - 10;
@@ -304,5 +305,15 @@ function loadGame() {
     }
     _c = saveData[2]
     wallet = new Wallet(_c[0], _c[1], _c[2], _c[3], _c[4]);
+}
+function triangleNumbers(x) {
+    let _t = ""
+    let lastTri = 0;
+    for (var i = 1; i <= x; i++) {
+        _t += (lastTri + i) + ", ";
+        lastTri += i;
+    }
+    console.log(_t);
+        
 }
 
