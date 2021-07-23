@@ -78,30 +78,10 @@ function gameClick() {
                                 default:
                                     cell.build(selectedTool, 0);
                                     break;
-
                             }
                         }
                     }
                 }
-
-            }
-        }
-        //check if a menu button was clicked
-        for (var i = 0; i < menu.buttons.length; i++) {
-            if (menu.buttons[i].contains(mouseX, mouseY)) {
-                let newState = true;
-                selectedTool = "none"
-                if (menu.buttons[i].active) {
-                    newState = false;
-                }
-                for (var j = 0; j < menu.buttons.length; j++) {
-                    menu.buttons[j].activate(false);
-                }
-                menu.buttons[i].activate(newState);
-                if (menu.buttons[i].active) {
-                    selectedTool = menu.buttons[i].tool;
-                } else selectedTool = "none";
-                return;
             }
         }
     }
