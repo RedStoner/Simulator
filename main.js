@@ -3,7 +3,6 @@ let CanvasSizeX;
 let CanvasSizeY; 
 let Grid = [];
 let Canvas;
-let menu = new Menu("construction");
 let cellSize;
 let maxGridX;
 let maxGridY;
@@ -40,10 +39,13 @@ let RoadNetworks = [];
 let startRoadX = Math.floor((gridSize / 3) / 2);
 
 
+let menu = new Menu("construction");
+
+
 function setup() {
     console.log("Starting Up.");
     frameRate(30);
-    CanvasSizeX = windowWidth - 20;
+    CanvasSizeX = document.getElementById("board").offsetWidth - 10;
     CanvasSizeY = windowHeight - 20;
     Canvas = createCanvas(CanvasSizeX, CanvasSizeY);
     Canvas.parent('board');
@@ -58,7 +60,7 @@ function setup() {
         newGame();
     }
     initiateRoads();
-
+    //menu.initialize();
     
 }
 function draw() {
@@ -140,8 +142,28 @@ function doPayouts() {
 
 }
 
+
+function toggleButton(_e) {
+    let newState = true;
+    selectedTool = "none";
+    if (menu.buttons[_e].active) {
+        newState = false;
+    }
+    for (var _b in menu.buttons) {
+        menu.buttons[_b].activate(false);
+    }
+    menu.buttons[_e].activate(newState);
+    if (menu.buttons[_e].active) {
+        selectedTool = menu.buttons[_e].tool;
+    }
+    return;
+
+}
+
+
+
 function adjustMaxGrids() {
-    maxGridX = Math.floor((CanvasSizeX - menuWidth) / zoomLevels[zoomLevel]);
+    maxGridX = Math.floor((CanvasSizeX) / zoomLevels[zoomLevel]);
     maxGridY = Math.floor((CanvasSizeY) / zoomLevels[zoomLevel]);
 }
 

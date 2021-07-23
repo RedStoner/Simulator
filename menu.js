@@ -1,42 +1,35 @@
 class Menu {
     constructor (_t){
         this.type = _t;
-        this.buttons = [
-            new Button(0, "Demolish", "demo"),
-            new Button(1, "Road", "road"),
-            new Button(2, "Residential", "residential"),
-            new Button(3, "Commercial", "commercial"),
-            new Button(4, "Industrial", "industrial"),
-            new Button(5, "Mine", "mine"),
-            new Button(6, "Lumber Mill", "mill"),
-            new Button(7, "Farm", "farm"),
-        ];
+        this.buttons = {
+            demo: new Button("demo"),
+            road: new Button("road"),
+            residential: new Button("residential"),
+            commercial: new Button("commercial"),
+            industrial: new Button("industrial"),
+            mine: new Button("mine"),
+            mill: new Button("mill"),
+            farm: new Button("farm"),
+        };
     }
+    
+
     draw() {
-        for (var i = 0; i < this.buttons.length; i++) {
-            this.buttons[i].draw()
-        }
-        let x = CanvasSizeX - menuWidth + 5;
-        let y = 0;
-        fill(180);
-        rect(x, y, menuWidth, (buttonHeight + 3) * topOffset);
-        fill(0);
-        textAlign(LEFT, CENTER);
         let _t = " Money: " + shrinkNumber(wallet.money[2]) + "/s  " + shrinkNumber(wallet.money[0]);
-        text(_t, x, y, menuWidth, (buttonHeight + 3));
-        y += buttonHeight + 3;
+        document.getElementById("money").innerHTML = _t;
+
         _t = " Pop: " + shrinkNumber(wallet.population[2]) + "/s  " + shrinkNumber(wallet.population[0]) + " / " + shrinkNumber(wallet.population[1]);
-        text(_t, x, y, menuWidth, (buttonHeight + 3));
-        y += buttonHeight + 3;
+        document.getElementById("population").innerHTML = _t;
+
         _t = " Ore: " + shrinkNumber(wallet.ore[2]) + "/s  " + shrinkNumber(wallet.ore[0]) + " / " + shrinkNumber(wallet.ore[1]);
-        text(_t, x, y, menuWidth, (buttonHeight + 3));
-        y += buttonHeight + 3;
+        document.getElementById("ore").innerHTML = _t;
+
         _t = " Lumber: " + shrinkNumber(wallet.lumber[2]) + "/s  " + shrinkNumber(wallet.lumber[0]) + " / " + shrinkNumber(wallet.lumber[1]);
-        text(_t, x, y, menuWidth, (buttonHeight + 3));
-        y += buttonHeight + 3;
+        document.getElementById("lumber").innerHTML = _t;
+
         _t = " Food: " + shrinkNumber(wallet.food[2]) + "/s  " + shrinkNumber(wallet.food[0]) + " / " + shrinkNumber(wallet.food[1]);
-        text(_t, x, y, menuWidth, (buttonHeight + 3));
-        textAlign(CENTER, CENTER);
+        document.getElementById("food").innerHTML = _t;
+
     }
 
 }

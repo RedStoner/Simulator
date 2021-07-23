@@ -27,3 +27,7 @@
     padding: 0px;
     margin: 0px;
 }
+#wallet {
+    background-color: lightslategray;
+    font: bold 16px arial;
+}
