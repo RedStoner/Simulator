@@ -273,6 +273,7 @@ function newGame() {
             objectsPlaced += 1;
         }
     } while (objectsPlaced <= totalMills);
+    saveGame();
 }
 function saveGame() {
     let saveData = [];
