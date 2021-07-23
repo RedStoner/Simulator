@@ -7,9 +7,9 @@ class Button {
     activate(_v) {
         this.active = _v;
         if (_v) {
-            document.getElementById(this.tool).style.background = '#9fdb8f';
+            document.getElementById(this.tool).style.background = 'chartreuse';
         } else {
-            document.getElementById(this.tool).style.background = '#8a8a8a';
+            document.getElementById(this.tool).style.background = 'lightslategray';
         }
     }
 }

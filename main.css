@@ -29,5 +29,6 @@
 }
 #wallet {
     background-color: lightslategray;
+    color: chartreuse
     font: bold 16px arial;
 }
