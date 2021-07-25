@@ -15,8 +15,8 @@ let wallet;
 let resourceGains;
 let gameTick = 0;
 let specialPlacement = ["mill", "mine", "farm"];
-let demandNames = ["residential", "commercial", "industrial"];
-let demands = { residential: 0, commercial: 0, industrial: 0 };
+let resourceNames = ["population", "food", "lumber", "ore"];
+let multipliers = { residential: 0, commercial: 0, industrial: 0 };
 let images = [];
 
 //Sizing Options
@@ -64,7 +64,6 @@ function setup() {
     } else {
         newGame();
     }
-    initiateRoads();
     //menu.initialize();
     
 }
@@ -101,7 +100,7 @@ function draw() {
 function doPayouts() {
     //calculate resource gains
     //wallet.adjustMoney(10);
-    resourceGains = { money: 0, population: 0, ore: 0, lumber: 0, food: 0, residential: 0, commercial:  0, industrial: 0, popCap: 0 };
+    resourceGains = { money: 0, population: 0, ore: 0, lumber: 0, food: 0, residentialSupply: 0, commercialSupply: 0, industrialSupply: 0, residentialDemand: 0, commercialDemand: 0, industrialDemand: 0, popCap: 0 };
     for (var x = 0; x < gridSize; x++) {
         for (var y = 0; y < gridSize; y++) {
             let cell = Grid[x][y];
@@ -125,24 +124,64 @@ function doPayouts() {
             }
         }
     }
+    //calculate supply demand multipliers
+    let ratios = { residential: 0, commercial: 0, industrial: 0 };
+    let _ave = 0;
+    
+
+    for (var key in ratios) {
+        //console.log(resourceGains[key+"Supply"]);
+        ratios[key] = 0;
+        if (resourceGains[key + "Supply"] != 0) {
+            ratios[key] = (resourceGains[key + "Demand"] * -1)/ resourceGains[key + "Supply"];
+            if (ratios[key] > 1) {
+                ratios[key] = 1;
+            }
+            //console.log((resourceGains[key + "Demand"] * -1) + " / " + resourceGains[key + "Supply"] + " = " + ratios[key]);
+        }
+        _ave += ratios[key];
+    }
+    _ave = _ave / 3;
+    //console.log("Average: "+ _ave);
+    for (var key in ratios) {
+        multipliers[key] = (0.4 * _ave) + (0.6 * ratios[key]);
+    }
+
     //console.log(resourceGains);
     Object.keys(resourceGains).map(function (objectKey, index) {
         var value = resourceGains[objectKey];
         if (objectKey == "popCap") {
             //console.log("Adjusting Cap: " + objectKey + " by " + value);
             wallet.setCapPopulation(value);
-        } else if (demandNames.includes(value)) {
-            //console.log("Adjusting Demand: " + objectKey + " by " + value);
-            demands[objectKey] = value;
-        } else {
+        } else if (resourceNames.includes(objectKey)) {
             //console.log("Adjusting: " + objectKey + " by " + value);
-            wallet.adjust([objectKey, value], 1);
-            wallet.setRate([objectKey, value], 1);
-        }
+            switch (objectKey) {
+                case "population":
+                    wallet.adjust([objectKey, value * multipliers.residential], 1);
+                    wallet.setRate([objectKey, value * multipliers.residential], 1);
+                    break;
+                case "lumber":
+                    wallet.adjust([objectKey, value * multipliers.industrial], 1);
+                    wallet.setRate([objectKey, value * multipliers.industrial], 1);
+                    break;
+                case "ore":
+                    wallet.adjust([objectKey, value * multipliers.industrial], 1);
+                    wallet.setRate([objectKey, value * multipliers.industrial], 1);
+                    break;
+                case "food":
+                    wallet.adjust([objectKey, value * multipliers.commercial], 1);
+                    wallet.setRate([objectKey, value * multipliers.commercial], 1);
+                    break;
+                default:
+                    wallet.adjust([objectKey, value], 1);
+                    wallet.setRate([objectKey, value], 1);
+            }
+        } 
     });
     //if (wallet.population[0] >= 1) {
-    wallet.adjustMoney(wallet.population[0] * taxRate);
-    wallet.setRateMoney(wallet.population[0] * taxRate);
+    let _m = wallet.population[0] * taxRate * multipliers.residential
+    wallet.adjustMoney(_m);
+    wallet.setRateMoney(_m);
     //}
 
 
@@ -278,6 +317,7 @@ function newGame() {
             objectsPlaced += 1;
         }
     } while (objectsPlaced <= totalMills);
+    initiateRoads();
     saveGame();
 }
 function saveGame() {
@@ -309,6 +349,7 @@ function loadGame() {
     }
     _c = saveData[2]
     wallet = new Wallet(_c[0], _c[1], _c[2], _c[3], _c[4]);
+    initiateRoads();
 }
 
 function loadImages() {

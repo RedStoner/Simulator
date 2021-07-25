@@ -31,13 +31,13 @@ class Building {
                     [
                         ["popCap", 5],
                         ["population", 0.01],
-                        ["residential", 1.5]
+                        ["residentialSupply", 1]
                     ]
                 ];
                 this.resourceCosts = [
                     [
                         ["food", 0.01],
-                        ["commercial", 2]
+                        ["commercialDemand", 0.25]
                     ]
                 ];
                 this.buildCost = [
@@ -50,13 +50,13 @@ class Building {
                 this.roadRange = 2;
                 this.resourceGains = [
                     [
-                        ["commercial", 1]
+                        ["commercialSupply", 1]
                     ]
                 ];
                 this.resourceCosts = [
                     [
-                        ["industrial", 2],
-                        ["residential", 0.25]
+                        ["industrialDemand", 1.5],
+                        ["residentialDemand", 1.25]
                     ]
                 ];
                 this.buildCost = [
@@ -69,13 +69,13 @@ class Building {
                 this.roadRange = 3;
                 this.resourceGains = [
                     [
-                        ["industrial", 1]
+                        ["industrialSupply", 1]
                     ]
                 ];
                 this.resourceCosts = [
                     [
-                        ["commercial", 0.5],
-                        ["residential", 0.5]
+                        ["commercialDemand", 0.5],
+                        ["residentialDemand", 0.5]
                     ]
                 ];
                 this.buildCost = [
