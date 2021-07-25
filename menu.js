@@ -30,6 +30,14 @@ class Menu {
         _t = " Food: " + shrinkNumber(wallet.food[2]) + "/s  " + shrinkNumber(wallet.food[0]) + " / " + shrinkNumber(wallet.food[1]);
         document.getElementById("food").innerHTML = _t;
 
+        document.getElementById("residentialSD").style.height = Math.floor(ratios.residential * 100 + .5) + "%";
+        document.getElementById("commercialSD").style.height = Math.floor(ratios.commercial * 100 + .5) + "%";
+        document.getElementById("industrialSD").style.height = Math.floor(ratios.industrial * 100 + .5) + "%";
+
+        document.getElementById("residentialSD").innerHTML = Math.floor(ratios.residential * 100 + .5) + "%";
+        document.getElementById("commercialSD").innerHTML = Math.floor(ratios.commercial * 100 + .5) + "%";
+        document.getElementById("industrialSD").innerHTML = Math.floor(ratios.industrial * 100 + .5) + "%";
+
     }
 
 }

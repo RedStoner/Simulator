@@ -17,6 +17,7 @@ let gameTick = 0;
 let specialPlacement = ["mill", "mine", "farm"];
 let resourceNames = ["population", "food", "lumber", "ore"];
 let multipliers = { residential: 0, commercial: 0, industrial: 0 };
+let ratios = { residential: 0, commercial: 0, industrial: 0 };
 let images = [];
 
 //Sizing Options
@@ -125,7 +126,7 @@ function doPayouts() {
         }
     }
     //calculate supply demand multipliers
-    let ratios = { residential: 0, commercial: 0, industrial: 0 };
+    ratios = { residential: 0, commercial: 0, industrial: 0 };
     let _ave = 0;
     
 
