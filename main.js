@@ -313,7 +313,7 @@ function loadGame() {
 
 function loadImages() {
     images.pick = loadImage('https://redstoner.github.io/Simulator/pick.svg');
-    images.axe = loadImage('https://redstoner.github.io/Simulator/axe2.svg');
+    images.axe = loadImage('https://redstoner.github.io/Simulator/axe.png');
     images.hoe = loadImage('https://redstoner.github.io/Simulator/hoe.svg');
 }
 
