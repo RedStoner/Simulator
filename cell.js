@@ -87,7 +87,7 @@ class Cell {
         } else if (this.resource == "farm") {
             image(images.hoe, x, y, cellSize, cellSize);
         } else if (this.resource == "mill") {
-            image(images.axe,x,y,cellSize,cellSize);
+            image(images.axe, x, y, cellSize, cellSize);
         }
         textSize(16);
         strokeWeight(4);
