@@ -42,10 +42,12 @@ let startRoadX = Math.floor((gridSize / 3) / 2);
 
 let menu = new Menu("construction");
 
+function preload(){
+    loadImages();
 
+}
 function setup() {
     triangleNumbers(50);
-    loadImages();
     console.log("Starting Up.");
     frameRate(30);
     CanvasSizeX = document.getElementById("board").offsetWidth - 10;
@@ -310,9 +312,9 @@ function loadGame() {
 }
 
 function loadImages() {
-    images.pick = loadImage('https://redstoner.github.io/Simulator/pick.svg')
-    images.axe = loadImage('https://redstoner.github.io/Simulator/axe2.png')
-    images.hoe = loadImage('https://redstoner.github.io/Simulator/hoe.svg')
+    images.pick = loadImage('https://redstoner.github.io/Simulator/pick.svg');
+    images.axe = loadImage('https://redstoner.github.io/Simulator/axe2.svg');
+    images.hoe = loadImage('https://redstoner.github.io/Simulator/hoe.svg');
 }
 
 
