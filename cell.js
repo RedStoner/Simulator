@@ -83,14 +83,11 @@ class Cell {
         //label resources
         textSize(Math.ceil(zoomLevels[zoomLevel] / 3));
         if (this.resource == "mine") {
-            fill(255);
-            text("M", x, y, cellSize, cellSize);
+            image(images.pick, x, y, cellSize, cellSize);
         } else if (this.resource == "farm") {
-            fill(0);
-            text("F", x, y, cellSize, cellSize);
+            image(images.hoe, x, y, cellSize, cellSize);
         } else if (this.resource == "mill") {
-            fill(0);
-            text("L", x, y, cellSize, cellSize);
+            image(images.axe,x,y,cellSize,cellSize);
         }
         textSize(16);
         strokeWeight(4);

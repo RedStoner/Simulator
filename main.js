@@ -17,6 +17,7 @@ let gameTick = 0;
 let specialPlacement = ["mill", "mine", "farm"];
 let demandNames = ["residential", "commercial", "industrial"];
 let demands = { residential: 0, commercial: 0, industrial: 0 };
+let images = [];
 
 //Sizing Options
 let gridSize = 60;
@@ -44,6 +45,7 @@ let menu = new Menu("construction");
 
 function setup() {
     triangleNumbers(50);
+    loadImages();
     console.log("Starting Up.");
     frameRate(30);
     CanvasSizeX = document.getElementById("board").offsetWidth - 10;
@@ -306,6 +308,15 @@ function loadGame() {
     _c = saveData[2]
     wallet = new Wallet(_c[0], _c[1], _c[2], _c[3], _c[4]);
 }
+
+function loadImages() {
+    images.pick = loadImage('https://redstoner.github.io/Simulator/pick.svg')
+    images.axe = loadImage('https://redstoner.github.io/Simulator/axe.svg')
+    images.hoe = loadImage('https://redstoner.github.io/Simulator/hoe.svg')
+}
+
+
+
 function triangleNumbers(x) {
     let _t = ""
     let lastTri = 0;
