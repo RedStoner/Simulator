@@ -1,0 +1,49 @@
+Visual Asset Guidelines:
+	SVG format would be prefered due to the amount of scaling that is done;
+	PNG's are acceptable.
+		- I would prefer min 64x64 if not using svg.
+	All map images should be square in dimentions otherwise they may look squashed due to scaling.
+
+Visual Assets Needed:
+	- Map Tiles
+		- Grass
+			- Multiple Variations are possible
+		- Water
+		- Roads
+			- Needs variations to cover possible connections
+				- unconnected
+				- dead end
+				- straight through
+				- curve
+				- three way
+				- 4 way
+			- I will cover rotations in code
+	- Residential, Commercial, and Industrial Buildings
+		- Need to have multiple tiers
+			- Im thinking of doing 5 tiers total for these.
+		- Possibly different variations for each tier
+	- Resource Nodes:
+		-Un-Established
+			- Ore Mine
+			- Forest
+			- Farm
+		- Established 
+			- 3 Tiers
+	- Special Structures
+		- Research Lab
+
+
+-- Secondary List ( Not needed/implemented yet)
+	- Utility Stuctures
+		- Water Pump
+		- Wind Mill
+		- Solar Panel
+		- Coal Power Plant
+		- Nuclear Power Plant
+		- Pipes
+			- same connection variations as roads
+
+
+
+
+		
