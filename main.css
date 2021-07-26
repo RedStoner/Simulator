@@ -57,6 +57,11 @@ button{
 #commercialSD {
     background-color: #0000ff;
 }
+#notificationswrapper {
+    height: 60px;
+}
 #notifications {
-    height: 10%;
+    height: 100%;
+    width: 100%;
+    display: block;
 }

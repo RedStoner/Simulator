@@ -11,6 +11,11 @@ class Menu {
             mill: new Button("mill"),
             farm: new Button("farm"),
         };
+        this.notifications = [
+            ["",0],
+            ["",0],
+            ["",0]
+        ];
     }
     
 
@@ -39,5 +44,35 @@ class Menu {
         document.getElementById("industrialSD").innerHTML = Math.floor(ratios.industrial * 100 + .5) + "%";
 
     }
-
+    showNotifications() {
+        for (var i = 0; i < 3; i++) {
+            document.getElementById("notify" + (i + 1)).innerHTML = this.notifications[i][0];
+            if (this.notifications[i][1] > 0) {
+                this.notifications[i][1] -= 1;
+            }
+        }
+        for (var i = 2; i >= 0; i--) {
+            document.getElementById("notify" + (i + 1)).innerHTML = this.notifications[i][0];
+        }
+    }
+    addNotification(_text,_time) {
+        if (this.notifications[0][0] == "") {
+            this.notifications[0] = [_text, _time];
+            return;
+        }
+        if (this.notifications[1][0] == "") {
+            this.notifications[1] = [_text, _time];
+            return;
+        }
+        if (this.notifications[2][0] == "") {
+            this.notifications[2] = [_text, _time];
+            return;
+        }
+    }
+    shiftDown() {
+        for (var i = 0; i < 2; i++) {
+            this.notifications[i] = this.notifications[i + 1];
+        }
+        this.notifications[2] = ["", 0];
+    }
 }
