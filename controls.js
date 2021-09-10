@@ -74,10 +74,12 @@ function checkClick(){
                             let cell = Grid[x + currentX][y + currentY];
                             if (cell.contains(mouseX, mouseY, x, y)) {
                                 //set the cell as selected, clear the previous selection
-                                cell.selected(true);
-                                Grid[selectedX][selectedY].selected(false);
-                                selectedX = x + currentX;
-                                selectedY = y + currentY;
+                                if (!(selectedX == x + currentX && selectedY == y + currentY)) {
+                                    cell.selected(true);
+                                    Grid[selectedX][selectedY].selected(false);
+                                    selectedX = x + currentX;
+                                    selectedY = y + currentY;
+                                }
                                 //tool options
                                 switch (selectedTool) {
                                     case "demo":

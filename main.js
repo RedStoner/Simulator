@@ -201,7 +201,7 @@ function toggleButton(_e) {
     menu.buttons[_e].activate(newState);
     if (menu.buttons[_e].active) {
         selectedTool = menu.buttons[_e].tool;
-        showToolInfo(_e);
+        //showToolInfo(_e);
     }
     return;
 
