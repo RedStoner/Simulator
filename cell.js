@@ -216,21 +216,21 @@ class Cell {
     residential(x, y) {
         strokeWeight(4);
         stroke(color('#00ff00'));
-        fill(color('rgba(0, 255, 0, 0.25)'));
+        fill(color('#00aa00'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
     }
     commercial(x, y) {
         strokeWeight(4);
         stroke(color('#0000ff'));
-        fill(color('rgba(0,0,255,0.25)'));
+        fill(color('#0000aa'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
     }
     industrial(x, y) {
         strokeWeight(4);
         stroke(color('#ffff00'))
-        fill(color('rgba(255,255,0,0.25)'));
+        fill(color('#aaaa00'));
         square(x + 2, y + 2, cellSize - 4);
         noStroke();
     }

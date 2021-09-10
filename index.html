@@ -16,9 +16,8 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <div id="board">
-    </div>
-    <div id="menu">
+    <div id="top">
+        <div id="logo"></div>
         <div id="notificationswrapper">
             <div id="notifications">
                 <div id="notify1"></div>
@@ -26,6 +25,8 @@
                 <div id="notify3"></div>
             </div>
         </div>
+    </div>
+    <div id="menu">
         <button class="buttons" onclick="newGame()">New Game</button>
         <button class="buttons" onclick="saveGame()">Save Game</button>
         <div id="wallet">
@@ -54,6 +55,26 @@
             <div id="commercialSD"></div>
             <div id="industrialSD"></div>
         </div>
+        <div id="selectedinfo">
+            <div id="sname">Name</div>
+            <div id="scost">Price</div>
+            <div> Income Amounts:</div>
+            <table id="sincome">
+                <tr>
+                    <td>resource</td>
+                    <td>amount</td>
+                </tr>
+            </table>
+            <div>Requirements:</div>
+            <table id="supkeep">
+                <tr>
+                    <td>resource</td>
+                    <td>amount</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="board">
     </div>
 </body>
 </html>

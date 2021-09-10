@@ -68,11 +68,14 @@ class Menu {
             this.notifications[2] = [_text, _time];
             return;
         }
+        //force notification push if it does not  fit by shifting all down.
     }
     shiftDown() {
-        for (var i = 0; i < 2; i++) {
-            this.notifications[i] = this.notifications[i + 1];
-        }
+        this.notifications[0] = this.notifications[1];
+        this.notifications[1] = this.notifications[2];
         this.notifications[2] = ["", 0];
+        if (this.notifications[0][0] == "" && this.notifications[1][0] != "") {
+            shiftDown();
+        }
     }
 }

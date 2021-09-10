@@ -52,7 +52,7 @@ function setup() {
     console.log("Starting Up.");
     frameRate(30);
     CanvasSizeX = document.getElementById("board").offsetWidth - 10;
-    CanvasSizeY = windowHeight - 20;
+    CanvasSizeY = windowHeight - 80;
     Canvas = createCanvas(CanvasSizeX, CanvasSizeY);
     Canvas.parent('board');
     Canvas.mouseClicked(gameClick);
@@ -133,8 +133,8 @@ function doPayouts() {
     for (var key in ratios) {
         //console.log(resourceGains[key+"Supply"]);
         ratios[key] = 0;
-        if (resourceGains[key + "Supply"] != 0) {
-            ratios[key] = (resourceGains[key + "Demand"] * -1)/ resourceGains[key + "Supply"];
+        if (resourceGains[key + "Demand"] != 0) {
+            ratios[key] =  resourceGains[key + "Supply"] / (resourceGains[key + "Demand"] * -1);
             if (ratios[key] > 1) {
                 ratios[key] = 1;
             }
@@ -202,6 +202,7 @@ function toggleButton(_e) {
     menu.buttons[_e].activate(newState);
     if (menu.buttons[_e].active) {
         selectedTool = menu.buttons[_e].tool;
+        showToolInfo(_e);
     }
     return;
 

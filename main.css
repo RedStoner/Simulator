@@ -1,17 +1,28 @@
-﻿body
-{
+﻿body {
+    font-size: 1em;
+    background-color: #222222;
+}
+#top {
+    border: 1px solid blue;
+    width: 100%;
+    float: left;
+    height: 60px;
+    padding: 0px;
+    margin: 0px;
+}
+#logo {
+    width: 75%;
 }
 button{
     background-color: lightslategray;
     border: none;
     color: black;
-    padding: 5px 5px;
+    padding: 2px 2px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     border-radius: 4px;
-    margin: 4px 4px 4px 4px;
+    margin: 2px 2px 2px 2px;
     width: 30%;
 }
 #board{
@@ -29,14 +40,15 @@ button{
 }
 #wallet {
     background-color: lightslategray;
-    font: bold 16px arial;
+    font: 1em arial;
     border-radius: 4px;
     margin: 4px 4px 4px 4px;
     padding: 5px 5px;
     height: 15%;
+    white-space: nowrap;
 }
 #supplydemand {
-    height: 100px;
+    height: 50px;
     border-top: solid 1px black;
     border-bottom: solid 1px black;
     padding: 5px 1px 5px 1px;
@@ -58,10 +70,23 @@ button{
     background-color: #0000ff;
 }
 #notificationswrapper {
-    height: 60px;
+    width: 24%;
+    float: right;
+    height: 96%;
+    padding: 0px;
+    margin: 0px;
 }
 #notifications {
     height: 100%;
     width: 100%;
     display: block;
+}
+
+#selectedinfo {
+    border: 1px solid black;
+    margin: 5px 0px 0px 0px;
+    height: 50%;
+    background-color: lightslategray;
+    font: 1em arial;
+    border-radius: 4px;
 }
