@@ -201,7 +201,10 @@ function toggleButton(_e) {
     menu.buttons[_e].activate(newState);
     if (menu.buttons[_e].active) {
         selectedTool = menu.buttons[_e].tool;
-        //showToolInfo(_e);
+        menu.showToolInfo(_e);
+    } else {
+        menu.showToolInfo("none");
+        console.log("selected none for tool");
     }
     return;
 

@@ -89,4 +89,11 @@ button{
     background-color: lightslategray;
     font: 1em arial;
     border-radius: 4px;
+    display: none;
+}
+#selectedinfo td {
+    width: 50%;
+}
+#selectedinfo table {
+    width: 100%;
 }

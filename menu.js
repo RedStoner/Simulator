@@ -78,4 +78,45 @@ class Menu {
             shiftDown();
         }
     }
+
+    showToolInfo(_t) {
+        if (_t == "none") {
+            document.getElementById("selectedinfo").style.display = "none";
+        } else if (_t == "demo") {
+            document.getElementById("selectedinfo").style.display = "block";
+            document.getElementById("sname").innerHTML = "Demolish";
+            document.getElementById("scost").innerHTML = "FREE";
+            document.getElementById("sincome").innerHTML = "";
+            document.getElementById("supkeep").innerHTML = "";
+
+        } else {
+            document.getElementById("selectedinfo").style.display = "block";
+            var bInfo = new Building(_t, 0);
+            document.getElementById("sname").innerHTML = bInfo.name;
+            if (bInfo.buildCost != "none") {
+                document.getElementById("scost").innerHTML = this.makeIntoRows(bInfo.buildCost[0])
+            } else {
+                document.getElementById("scost").innerHTML = "";
+            }
+
+            if (bInfo.resourceGains != "none") {
+                document.getElementById("sincome").innerHTML = this.makeIntoRows(bInfo.resourceGains[0])
+            } else {
+                document.getElementById("sincome").innerHTML = "";
+            }
+
+            if (bInfo.resourceCosts != "none") {
+                document.getElementById("supkeep").innerHTML = this.makeIntoRows(bInfo.resourceCosts[0])
+            } else {
+                document.getElementById("supkeep").innerHTML = "";
+            }
+        }
+    }
+
+    makeIntoRows(_data) {
+        //console.log(_data);
+        var _s = "";
+        _data.forEach(element => _s += "<tr><td>" + element[0] + "</td><td>" + element[1]);
+        return _s;
+    }
 }

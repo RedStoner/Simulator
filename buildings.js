@@ -6,17 +6,20 @@ class Building {
         this.resourceGains;
         this.resourceCosts;
         this.buildCost;
+        this.name;
         this.roadRange = 0;
 
         //Resource Layout - resourceGains[level][type(0),value(1)]...
 
         switch (type) {
             case "none":
+                this.name = "None";
                 this.resourceGains = "none";
                 this.resourceCosts = "none";
                 this.buildCost = "none";
                 break;
             case "road":
+                this.name = "Road";
                 this.resourceGains = "none";
                 this.resourceCosts = "none";
                 this.buildCost = [
@@ -26,6 +29,7 @@ class Building {
                 ];
                 break;
             case "residential":
+                this.name = "Residential";
                 this.roadRange = 1;
                 this.resourceGains = [
                     [
@@ -47,6 +51,7 @@ class Building {
                 ];
                 break;
             case "commercial":
+                this.name = "Commercial";
                 this.roadRange = 2;
                 this.resourceGains = [
                     [
@@ -66,6 +71,7 @@ class Building {
                 ];
                 break;
             case "industrial":
+                this.name = "Industrial";
                 this.roadRange = 3;
                 this.resourceGains = [
                     [
@@ -85,6 +91,7 @@ class Building {
                 ];
                 break;
             case "mine":
+                this.name = "Ore Mine";
                 this.roadRange = 1;
                 this.resourceGains = [
                     [
@@ -104,6 +111,7 @@ class Building {
                 ];
                 break;
             case "mill":
+                this.name = "Lumber Mill";
                 this.roadRange = 1;
                 this.resourceGains = [
                     [
@@ -123,6 +131,7 @@ class Building {
                 ];
                 break;
             case "farm":
+                this.name = "Farmland";
                 this.roadRange = 1;
                 this.resourceGains = [
                     [
