@@ -90,13 +90,15 @@ class Cell {
             image(images.axe, x, y, cellSize, cellSize);
         }
         textSize(16);
+
+        //highlight cell hovered over.
         strokeWeight(4);
         if (this.contains(mouseX, mouseY, _x, _y)) {
             stroke('red');
             fill(color('rgba(0,0,0,0)'));
             square(x + 2, y + 2, cellSize - 4);
         } else if (this.clicked) {
-            stroke(0);
+            stroke('black');
             fill(color('rgba(0,0,0,0)'));
             square(x + 2, y + 2, cellSize - 4);
         }

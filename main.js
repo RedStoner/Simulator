@@ -55,7 +55,6 @@ function setup() {
     CanvasSizeY = windowHeight - 80;
     Canvas = createCanvas(CanvasSizeX, CanvasSizeY);
     Canvas.parent('board');
-    Canvas.mouseClicked(gameClick);
     zoom(0);
     textAlign(CENTER, CENTER);
     textSize(16);

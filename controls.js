@@ -95,33 +95,3 @@ function checkClick(){
         }
     }
 }
-function gameClick() {
-    if (mouseButton === LEFT) {
-        //check if a cell was clicked
-        for (var x = 0; x < maxGridX; x++) {
-            for (var y = 0; y < maxGridY; y++) {
-                if (x + currentX <= Grid.length - 1) {
-                    if (y + currentY <= Grid[x + currentX].length - 1) {
-                        let cell = Grid[x + currentX][y + currentY];
-                        if (cell.contains(mouseX, mouseY, x, y)) {
-                            //set the cell as selected, clear the previous selection
-                            cell.selected(true);
-                            Grid[selectedX][selectedY].selected(false);
-                            selectedX = x + currentX;
-                            selectedY = y + currentY;
-                            //tool options
-                            switch (selectedTool) {
-                                case "demo":
-                                    cell.demo();
-                                    break;
-                                default:
-                                    cell.build(selectedTool, 0);
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
