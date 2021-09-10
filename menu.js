@@ -80,6 +80,8 @@ class Menu {
     }
 
     showToolInfo(_t) {
+        document.getElementById("slabel").innerHTML = "Cost:";
+        document.getElementById("slevel").style.display = "none";
         if (_t == "none") {
             document.getElementById("selectedinfo").style.display = "none";
         } else if (_t == "demo") {
@@ -94,19 +96,19 @@ class Menu {
             var bInfo = new Building(_t, 0);
             document.getElementById("sname").innerHTML = bInfo.name;
             if (bInfo.buildCost != "none") {
-                document.getElementById("scost").innerHTML = this.makeIntoRows(bInfo.buildCost[0])
+                document.getElementById("scost").innerHTML = this.makeIntoRows(bInfo.buildCost[0]);
             } else {
                 document.getElementById("scost").innerHTML = "";
             }
 
             if (bInfo.resourceGains != "none") {
-                document.getElementById("sincome").innerHTML = this.makeIntoRows(bInfo.resourceGains[0])
+                document.getElementById("sincome").innerHTML = this.makeIntoRows(bInfo.resourceGains[0]);
             } else {
                 document.getElementById("sincome").innerHTML = "";
             }
 
             if (bInfo.resourceCosts != "none") {
-                document.getElementById("supkeep").innerHTML = this.makeIntoRows(bInfo.resourceCosts[0])
+                document.getElementById("supkeep").innerHTML = this.makeIntoRows(bInfo.resourceCosts[0]);
             } else {
                 document.getElementById("supkeep").innerHTML = "";
             }
@@ -118,5 +120,30 @@ class Menu {
         var _s = "";
         _data.forEach(element => _s += "<tr><td>" + element[0] + "</td><td>" + element[1]);
         return _s;
+    }
+
+    showSelected(cell) {
+        document.getElementById("slabel").innerHTML = "Cost to Upgrade:";
+        document.getElementById("selectedinfo").style.display = "block";
+        document.getElementById("slevel").style.display = "block";
+        document.getElementById("sname").innerHTML = cell.construction.name;
+        document.getElementById("slevel").innerHTML = "Level: " + (cell.construction.level + 1);
+        if (cell.construction.buildCost != "none") {
+            document.getElementById("scost").innerHTML = this.makeIntoRows(cell.construction.buildCost[0]);
+        } else {
+            document.getElementById("scost").innerHTML = "";
+        }
+
+        if (cell.construction.resourceGains != "none") {
+            document.getElementById("sincome").innerHTML = this.makeIntoRows(cell.construction.resourceGains[0]);
+        } else {
+            document.getElementById("sincome").innerHTML = "";
+        }
+
+        if (cell.construction.resourceCosts != "none") {
+            document.getElementById("supkeep").innerHTML = this.makeIntoRows(cell.construction.resourceCosts[0]);
+        } else {
+            document.getElementById("supkeep").innerHTML = "";
+        }
     }
 }

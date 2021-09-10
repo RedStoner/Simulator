@@ -85,6 +85,8 @@ function checkClick(){
                                     case "demo":
                                         cell.demo();
                                         break;
+                                    case "none":
+                                        menu.showSelected(cell);
                                     default:
                                         cell.build(selectedTool, 0);
                                         break;
